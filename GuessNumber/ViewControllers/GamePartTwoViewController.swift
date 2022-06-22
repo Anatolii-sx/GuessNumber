@@ -21,7 +21,13 @@ class GamePartTwoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var guessButton: UIButton!
     
     @IBAction func guessButtonTapped() {
-        guard let inputedNumberTF = Int(inputedNumberTF.text ?? "") else { return }
+        
+        guard let inputedNumberTF = Int(inputedNumberTF.text ?? ""), 1...100 ~= inputedNumberTF else {
+            showAlert()
+            return
+        }
+        
+        computerResponseLabel.isHidden = true
         
         if guessNumberComputer == inputedNumberTF {
             performSegue(withIdentifier: "ToResultSegue", sender: nil)
@@ -41,6 +47,7 @@ class GamePartTwoViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         inputedNumberTF.delegate = self
         updateTriesLabel()
+        addDoneButtonForNumberKeyboard()
         
         print(guessNumberComputer)
     }
@@ -51,7 +58,66 @@ class GamePartTwoViewController: UIViewController, UITextFieldDelegate {
         resultVC.triesPlayer = triesPlayer
     }
     
+    // MARK: - UITextFieldDelegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        computerResponseLabel.isHidden = true
+        return true
+    }
+    
     private func updateTriesLabel() {
         triesPlayerLabel.text = "Try № \(triesPlayer)"
+    }
+    
+    // MARK: - Keyboard
+    // Add done button for number keyboard
+    private func addDoneButtonForNumberKeyboard() {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        inputedNumberTF.inputAccessoryView = keyboardToolbar
+        
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(doneButtonTapped)
+        )
+        
+        let flexBarButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
+        
+        keyboardToolbar.items = [flexBarButton, doneButton]
+    }
+    
+    @objc private func doneButtonTapped() {
+        view.endEditing(true)
+    }
+    
+    // Hide keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+}
+
+// MARK: - Alert Controller
+extension GamePartTwoViewController {
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "⛔️",
+            message: "Write number from 1 to 100",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: nil
+            )
+        )
+        
+        present(alert, animated: true)
     }
 }

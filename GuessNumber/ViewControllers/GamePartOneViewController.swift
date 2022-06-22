@@ -50,26 +50,31 @@ class GamePartOneViewController: UIViewController {
             if guessNumberPlayer == currentChosenNumberComputer {
                 performSegue(withIdentifier: "ToGamePartTwoSegue", sender: nil)
             } else {
-                print("Player lied")
+                showAlert()
             }
         case "<":
             if guessNumberPlayer < currentChosenNumberComputer {
                 maxChosenNumberComputer = currentChosenNumberComputer
-                currentChosenNumberComputer =  (maxChosenNumberComputer - minChosenNumberComputer) / 2 +   minChosenNumberComputer
+                currentChosenNumberComputer = (maxChosenNumberComputer - minChosenNumberComputer) / 2 + minChosenNumberComputer
                 triesComputer += 1
                 updateLabels()
             } else {
-                print("Player lied")
+                showAlert()
             }
             
         case ">":
             if guessNumberPlayer > currentChosenNumberComputer {
                 minChosenNumberComputer = currentChosenNumberComputer
                 currentChosenNumberComputer = (maxChosenNumberComputer - minChosenNumberComputer) / 2 + minChosenNumberComputer
+                
+                if currentChosenNumberComputer == minChosenNumberComputer {
+                    currentChosenNumberComputer = 100
+                }
+                
                 triesComputer += 1
                 updateLabels()
             } else {
-                print("Player lied")
+                showAlert()
             }
             
         default:
@@ -83,4 +88,25 @@ class GamePartOneViewController: UIViewController {
     }
     
     
+}
+
+// MARK: - Alert Controller
+extension GamePartOneViewController {
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "😏",
+            message: "Don't lie",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: nil
+            )
+        )
+        
+        present(alert, animated: true)
+    }
 }

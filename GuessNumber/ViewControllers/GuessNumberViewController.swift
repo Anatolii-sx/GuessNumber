@@ -29,6 +29,10 @@ class GuessNumberViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBActions
     @IBAction func enterNumberButton() {
+        guard let guessNumber = Int(guessNumberTF.text ?? ""), 1...100 ~= guessNumber else {
+            showAlert()
+            return
+        }
         performSegue(withIdentifier: "ToGamePartOneSegue", sender: nil)
     }
     
@@ -77,5 +81,26 @@ class GuessNumberViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
+    }
+}
+
+// MARK: - Alert Controller
+extension GuessNumberViewController {
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "⛔️",
+            message: "Write number from 1 to 100",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: nil
+            )
+        )
+        
+        present(alert, animated: true)
     }
 }

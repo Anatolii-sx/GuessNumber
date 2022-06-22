@@ -22,7 +22,7 @@ class ResultViewController: UIViewController {
         triesComputerLabel.text = "Computer's tries count: \(triesComputer ?? 0)"
         showTheWinner()
     }
-    
+
     func showTheWinner() {
         winnerLabel.isHidden = false
         if triesPlayer == triesComputer {

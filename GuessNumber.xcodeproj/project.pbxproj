@@ -13,6 +13,10 @@
 		9C735BA428623C5B00A15DE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C735BA228623C5B00A15DE0 /* Main.storyboard */; };
 		9C735BA628623C5C00A15DE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C735BA528623C5C00A15DE0 /* Assets.xcassets */; };
 		9C735BA928623C5C00A15DE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C735BA728623C5C00A15DE0 /* LaunchScreen.storyboard */; };
+		9C735BB128635D1E00A15DE0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C735BB028635D1E00A15DE0 /* ResultViewController.swift */; };
+		9C735BB328635E2400A15DE0 /* GuessNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C735BB228635E2400A15DE0 /* GuessNumberViewController.swift */; };
+		9C735BB528635E6D00A15DE0 /* GamePartOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C735BB428635E6D00A15DE0 /* GamePartOneViewController.swift */; };
+		9C735BB728635E7F00A15DE0 /* GamePartTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C735BB628635E7F00A15DE0 /* GamePartTwoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		9C735BA528623C5C00A15DE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C735BA828623C5C00A15DE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C735BAA28623C5C00A15DE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C735BB028635D1E00A15DE0 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		9C735BB228635E2400A15DE0 /* GuessNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessNumberViewController.swift; sourceTree = "<group>"; };
+		9C735BB428635E6D00A15DE0 /* GamePartOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePartOneViewController.swift; sourceTree = "<group>"; };
+		9C735BB628635E7F00A15DE0 /* GamePartTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePartTwoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,51 @@
 		9C735B9B28623C5B00A15DE0 /* GuessNumber */ = {
 			isa = PBXGroup;
 			children = (
-				9C735B9C28623C5B00A15DE0 /* AppDelegate.swift */,
-				9C735B9E28623C5B00A15DE0 /* SceneDelegate.swift */,
-				9C735BA028623C5B00A15DE0 /* StartViewController.swift */,
-				9C735BA228623C5B00A15DE0 /* Main.storyboard */,
-				9C735BA528623C5C00A15DE0 /* Assets.xcassets */,
-				9C735BA728623C5C00A15DE0 /* LaunchScreen.storyboard */,
-				9C735BAA28623C5C00A15DE0 /* Info.plist */,
+				9C735BB928635EF100A15DE0 /* ViewControllers */,
+				9C735BB828635EE000A15DE0 /* Storyboards */,
+				9C735BBB28635F1E00A15DE0 /* Resources */,
+				9C735BBA28635F1500A15DE0 /* App */,
 			);
 			path = GuessNumber;
+			sourceTree = "<group>";
+		};
+		9C735BB828635EE000A15DE0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9C735BA228623C5B00A15DE0 /* Main.storyboard */,
+				9C735BA728623C5C00A15DE0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		9C735BB928635EF100A15DE0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9C735BA028623C5B00A15DE0 /* StartViewController.swift */,
+				9C735BB228635E2400A15DE0 /* GuessNumberViewController.swift */,
+				9C735BB428635E6D00A15DE0 /* GamePartOneViewController.swift */,
+				9C735BB628635E7F00A15DE0 /* GamePartTwoViewController.swift */,
+				9C735BB028635D1E00A15DE0 /* ResultViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9C735BBA28635F1500A15DE0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9C735B9C28623C5B00A15DE0 /* AppDelegate.swift */,
+				9C735B9E28623C5B00A15DE0 /* SceneDelegate.swift */,
+				9C735BAA28623C5C00A15DE0 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		9C735BBB28635F1E00A15DE0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9C735BA528623C5C00A15DE0 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +182,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C735BB528635E6D00A15DE0 /* GamePartOneViewController.swift in Sources */,
 				9C735BA128623C5B00A15DE0 /* StartViewController.swift in Sources */,
 				9C735B9D28623C5B00A15DE0 /* AppDelegate.swift in Sources */,
+				9C735BB328635E2400A15DE0 /* GuessNumberViewController.swift in Sources */,
+				9C735BB728635E7F00A15DE0 /* GamePartTwoViewController.swift in Sources */,
 				9C735B9F28623C5B00A15DE0 /* SceneDelegate.swift in Sources */,
+				9C735BB128635D1E00A15DE0 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +265,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -272,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -291,7 +339,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JCDM2HMWLU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GuessNumber/Info.plist;
+				INFOPLIST_FILE = GuessNumber/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -320,7 +368,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JCDM2HMWLU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GuessNumber/Info.plist;
+				INFOPLIST_FILE = GuessNumber/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

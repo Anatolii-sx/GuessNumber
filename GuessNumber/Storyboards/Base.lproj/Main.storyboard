@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GuessNumber" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StartViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="81.696428571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Guess Number View Controller-->
         <scene sceneID="9PL-mD-Aia">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="9ci-Kn-zTN" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="9ci-Kn-zTN" customClass="GuessNumberViewController" customModule="GuessNumber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pfi-YJ-6tI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -245,7 +245,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="iP9-T1-VyO"/>
                     <connections>
-                        <segue destination="Rqs-4Y-b8f" kind="show" identifier="" id="kuv-2Z-hR1"/>
+                        <segue destination="Rqs-4Y-b8f" kind="show" identifier="ToGamePartTwoSegue" id="kuv-2Z-hR1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7i-M5-NqF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -333,17 +333,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="k9q-0a-KDq"/>
                     <connections>
-                        <segue destination="fHT-zW-Rr6" kind="show" id="O31-pg-pfA"/>
+                        <segue destination="fHT-zW-Rr6" kind="show" identifier="ToResultSegue" id="O31-pg-pfA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mYa-EX-4YG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2258" y="82"/>
         </scene>
-        <!--View Controller-->
+        <!--Result View Controller-->
         <scene sceneID="L3Z-Ja-XIn">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="fHT-zW-Rr6" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="fHT-zW-Rr6" customClass="ResultViewController" customModule="GuessNumber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0GU-oH-OqL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

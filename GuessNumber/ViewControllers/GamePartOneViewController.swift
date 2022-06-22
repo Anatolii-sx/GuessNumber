@@ -14,7 +14,7 @@ class GamePartOneViewController: UIViewController {
     private let maxNumberGame = 100
     private let minNumberGame = 1
     
-    private var currentChosenNumberComputer = Int.random(in: 1...10)
+    private var currentChosenNumberComputer = Int.random(in: 1...100)
     private var maxChosenNumberComputer = 100
     private var minChosenNumberComputer = 1
     

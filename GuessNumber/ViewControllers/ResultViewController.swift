@@ -9,6 +9,10 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
+    var triesComputer: Int!
+    var triesPlayer: Int!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

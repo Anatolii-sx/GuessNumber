@@ -9,6 +9,8 @@ import UIKit
 
 class GamePartTwoViewController: UIViewController {
 
+    var triesComputer: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

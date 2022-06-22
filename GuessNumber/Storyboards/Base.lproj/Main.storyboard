@@ -157,6 +157,9 @@
                                                 <integer key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="comparisonButtonTapped:" destination="TYW-iI-uf7" eventType="touchUpInside" id="Xb8-QR-kD6"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cau-dW-Ie7">
                                         <rect key="frame" x="58" y="0.0" width="50" height="50"/>
@@ -178,6 +181,9 @@
                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="comparisonButtonTapped:" destination="TYW-iI-uf7" eventType="touchUpInside" id="bxO-U8-Sxw"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moG-mD-MX3">
                                         <rect key="frame" x="116" y="0.0" width="50" height="50"/>
@@ -199,6 +205,9 @@
                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="comparisonButtonTapped:" destination="TYW-iI-uf7" eventType="touchUpInside" id="4sf-xJ-Egm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -250,6 +259,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="iP9-T1-VyO"/>
                     <connections>
+                        <outlet property="currentChosenNumberComputerLabel" destination="i2K-YR-JtX" id="9Un-KB-Rlp"/>
+                        <outlet property="triesComputerLabel" destination="vQs-XR-1sb" id="XJC-WP-bxx"/>
+                        <outletCollection property="ComparisonButtonsPlayer" destination="c33-BG-Mby" collectionClass="NSMutableArray" id="4Vp-Ty-26p"/>
+                        <outletCollection property="ComparisonButtonsPlayer" destination="Cau-dW-Ie7" collectionClass="NSMutableArray" id="Afb-Zb-paV"/>
+                        <outletCollection property="ComparisonButtonsPlayer" destination="moG-mD-MX3" collectionClass="NSMutableArray" id="2lK-pK-ljK"/>
                         <segue destination="Rqs-4Y-b8f" kind="show" identifier="ToGamePartTwoSegue" id="kuv-2Z-hR1"/>
                     </connections>
                 </viewController>

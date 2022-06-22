@@ -9,7 +9,10 @@ import UIKit
 
 class GamePartOneViewController: UIViewController {
 
+    var guessNumberPlayer: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(guessNumberPlayer ?? 0)
     }
 }

@@ -448,6 +448,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="H1Q-Q8-AXM"/>
+                    <connections>
+                        <outlet property="triesComputerLabel" destination="TJK-DA-EmE" id="zgI-hA-T5g"/>
+                        <outlet property="triesPlayerLabel" destination="ROa-3f-uL7" id="MDd-vU-Z4i"/>
+                        <outlet property="winnerLabel" destination="My2-Hn-JEL" id="MKj-8o-fKD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXd-Cm-sAR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="2vb-sI-GmM" userLabel="Exit" sceneMemberID="exit"/>

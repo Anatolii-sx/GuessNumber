@@ -12,7 +12,7 @@
         <!--Start View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="StartViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="GuessNumber" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,9 +86,6 @@
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="TYW-iI-uf7" kind="show" id="63y-Ik-PfC"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Guess the number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-Ge-7oU">
                                 <rect key="frame" x="20" y="100" width="335" height="34"/>
@@ -110,15 +107,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="m7f-hI-YRe"/>
+                    <connections>
+                        <segue destination="TYW-iI-uf7" kind="show" identifier="ToGamePartOneSegue" id="3nO-8P-gNX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMk-NZ-Z0F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="783" y="82"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Part One View Controller-->
         <scene sceneID="KIb-kd-owr">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="TYW-iI-uf7" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="TYW-iI-uf7" customClass="GamePartOneViewController" customModule="GuessNumber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IAU-TY-AgT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="1512.8" y="81.409295352323838"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Part Two View Controller-->
         <scene sceneID="6hM-di-FRV">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="Rqs-4Y-b8f" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="Rqs-4Y-b8f" customClass="GamePartTwoViewController" customModule="GuessNumber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jNs-WU-4Ot">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,6 +388,9 @@
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="2vb-sI-GmM" kind="unwind" unwindAction="unwindToStartFor:" id="f2d-YA-Glr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GRM-4M-psD"/>
@@ -421,6 +424,7 @@
                     <navigationItem key="navigationItem" id="H1Q-Q8-AXM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXd-Cm-sAR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="2vb-sI-GmM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2993" y="82"/>
         </scene>

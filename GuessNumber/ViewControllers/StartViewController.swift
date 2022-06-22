@@ -8,9 +8,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    
+    @IBAction func unwindToStart(for unwindSegue: UIStoryboardSegue) {}
 }
 

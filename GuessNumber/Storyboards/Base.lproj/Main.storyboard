@@ -104,7 +104,7 @@
                         <constraints>
                             <constraint firstItem="x7D-Nl-mNB" firstAttribute="trailing" secondItem="Zrx-Ge-7oU" secondAttribute="trailing" constant="20" id="7Om-e1-dkL"/>
                             <constraint firstItem="Zrx-Ge-7oU" firstAttribute="top" secondItem="x7D-Nl-mNB" secondAttribute="top" constant="100" id="Ikq-SG-efT">
-                                <variation key="heightClass=compact" constant="140"/>
+                                <variation key="heightClass=compact" constant="120"/>
                             </constraint>
                             <constraint firstItem="x7D-Nl-mNB" firstAttribute="trailing" secondItem="077-gl-2jI" secondAttribute="trailing" constant="20" id="b5B-6V-qfW"/>
                             <constraint firstItem="x7D-Nl-mNB" firstAttribute="bottom" secondItem="077-gl-2jI" secondAttribute="bottom" constant="80" id="kex-7o-tyD"/>
@@ -361,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mYa-EX-4YG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3196" y="81.409295352323838"/>
+            <point key="canvasLocation" x="3195.6521739130435" y="80.799999999999997"/>
         </scene>
         <!--Result View Controller-->
         <scene sceneID="L3Z-Ja-XIn">

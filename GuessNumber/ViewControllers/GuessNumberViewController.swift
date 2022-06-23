@@ -9,7 +9,10 @@ import UIKit
 
 // MARK: - GuessNumberViewProtocol (Connection Presenter -> View)
 protocol GuessNumberViewProtocol: AnyObject {
-    
+    func changeButtonStatus(isEnabled: Bool, alpha: CGFloat)
+    func endEditing(status: Bool)
+    func showError(title: String, message: String)
+    func performSegue(identifier: String)
 }
 
 class GuessNumberViewController: UIViewController, UITextFieldDelegate {
@@ -24,10 +27,9 @@ class GuessNumberViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         guessNumberTF.delegate = self
-        enterButton.isEnabled = false
-        enterButton.alpha = 0.5
-        addDoneButtonForNumberKeyboard()
         presenter = GuessNumberPresenter(view: self)
+        presenter.textFieldDidEndEditing(guessNumber: guessNumberTF.text ?? "")
+        addDoneButtonForNumberKeyboard()
     }
     
     // MARK: - Navigation
@@ -38,26 +40,17 @@ class GuessNumberViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBActions
     @IBAction func enterNumberButton() {
-        guard let guessNumber = Int(guessNumberTF.text ?? ""), 1...100 ~= guessNumber else {
-            showAlert()
-            return
-        }
-        performSegue(withIdentifier: "ToGamePartOneSegue", sender: nil)
+        presenter.enterNumberButtonTapped(guessNumber: guessNumberTF.text ?? "")
     }
     
     // MARK: - UITextFieldDelegate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        enterButton.isEnabled = true
-        enterButton.alpha = 1
+        presenter.charactersInTextFieldAreChanging()
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let guessNumberTF = guessNumberTF.text else { return }
-        if guessNumberTF.isEmpty {
-            enterButton.isEnabled = false
-            enterButton.alpha = 0.5
-        }
+        presenter.textFieldDidEndEditing(guessNumber: guessNumberTF.text ?? "")
     }
     
     // MARK: - Keyboard
@@ -83,22 +76,22 @@ class GuessNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func doneButtonTapped() {
-        view.endEditing(true)
+        presenter.keyboardDoneButtonTapped()
     }
     
     // Hide keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        view.endEditing(true)
+        presenter.touchesBegan()
     }
 }
 
 // MARK: - Alert Controller
 extension GuessNumberViewController {
-    private func showAlert() {
+    private func showAlert(title: String, message: String) {
         let alert = UIAlertController(
-            title: "⛔️",
-            message: "Write number from 1 to 100",
+            title: title,
+            message: message,
             preferredStyle: .alert
         )
         
@@ -116,5 +109,20 @@ extension GuessNumberViewController {
 
 // MARK: - Realization GuessNumberViewProtocol Methods (Connection Presenter -> View)
 extension GuessNumberViewController: GuessNumberViewProtocol {
+    func changeButtonStatus(isEnabled: Bool, alpha: CGFloat) {
+        enterButton.isEnabled = isEnabled
+        enterButton.alpha = alpha
+    }
     
+    func endEditing(status: Bool) {
+        view.endEditing(status)
+    }
+    
+    func showError(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    
+    func performSegue(identifier: String) {
+        performSegue(withIdentifier: identifier, sender: nil)
+    }
 }

@@ -18,7 +18,7 @@ class GamePartOneViewController: UIViewController {
     var guessNumberPlayer: Int!
     
     // MARK: - Private Properties
-    private var presenter: GamePartOnePresenterProtocol!
+    var presenter: GamePartOnePresenterProtocol!
     
     private let maxNumberGame = 100
     private let minNumberGame = 1

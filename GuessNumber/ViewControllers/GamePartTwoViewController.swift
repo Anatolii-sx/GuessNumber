@@ -58,7 +58,7 @@ class GamePartTwoViewController: UIViewController, UITextFieldDelegate {
         addDoneButtonForNumberKeyboard()
         
         presenter = GamePartTwoPresenter(view: self)
-        print(guessNumberComputer)
+        print("Computer guessed: \(guessNumberComputer)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

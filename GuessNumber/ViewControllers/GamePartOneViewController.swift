@@ -10,103 +10,59 @@ import UIKit
 
 // MARK: - GamePartOneViewProtocol (Connection Presenter -> View)
 protocol GamePartOneViewProtocol: AnyObject {
-    
+    func updateLabels(triesComputer: String, currentChosenNumberComputer: String)
+    func showError(title: String, message: String)
+    func performSegue(identifier: String)
 }
 
 class GamePartOneViewController: UIViewController {
 
+    // MARK: - Public Properties
     var guessNumberPlayer: Int!
     
     // MARK: - Private Properties
     var presenter: GamePartOnePresenterProtocol!
     
-    private let maxNumberGame = 100
-    private let minNumberGame = 1
-    
-    private var currentChosenNumberComputer = Int.random(in: 1...100)
-    private var maxChosenNumberComputer = 100
-    private var minChosenNumberComputer = 1
-    
-    private var triesComputer = 1
-    
+    // MARK: - IBOutlets
     @IBOutlet var comparisonButtonsPlayer: [UIButton]!
-    
     @IBOutlet weak var triesComputerLabel: UILabel!
     @IBOutlet weak var currentChosenNumberComputerLabel: UILabel!
     
+    // MARK: - Methods Of ViewController's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = GamePartOnePresenter(view: self, guessNumberPlayer: guessNumberPlayer)
+        setButtons()
+        presenter.setLabelsText()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let gamePartTwoVC = segue.destination as? GamePartTwoViewController else { return }
+        gamePartTwoVC.triesComputer = presenter.triesComputer
+    }
+    
+    // MARK: - IBActions
+    @IBAction func comparisonButtonTapped(_ sender: UIButton) {
+        presenter.comparisonButtonTapped(pushedButton: sender.currentTitle ?? "")
+    }
+    
+    // MARK: - Private Properties
+    private func setButtons() {
         comparisonButtonsPlayer.forEach { button in
             button.layer.borderWidth = 1
             button.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
             button.backgroundColor = .clear
         }
-        updateLabels()
-        
-        presenter = GamePartOnePresenter(view: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let gamePartTwoVC = segue.destination as? GamePartTwoViewController else { return }
-        gamePartTwoVC.triesComputer = triesComputer
-    }
-    
-    @IBAction func comparisonButtonTapped(_ sender: UIButton) {
-        makeComputerDecision(pushedButton: sender.currentTitle ?? "")
-    }
-    
-    private func makeComputerDecision(pushedButton: String) {
-        switch pushedButton {
-        case "=":
-            if guessNumberPlayer == currentChosenNumberComputer {
-                performSegue(withIdentifier: "ToGamePartTwoSegue", sender: nil)
-            } else {
-                showAlert()
-            }
-        case "<":
-            if guessNumberPlayer < currentChosenNumberComputer {
-                maxChosenNumberComputer = currentChosenNumberComputer
-                currentChosenNumberComputer = (maxChosenNumberComputer - minChosenNumberComputer) / 2 + minChosenNumberComputer
-                triesComputer += 1
-                updateLabels()
-            } else {
-                showAlert()
-            }
-            
-        case ">":
-            if guessNumberPlayer > currentChosenNumberComputer {
-                minChosenNumberComputer = currentChosenNumberComputer
-                currentChosenNumberComputer = (maxChosenNumberComputer - minChosenNumberComputer) / 2 + minChosenNumberComputer
-                
-                if currentChosenNumberComputer == minChosenNumberComputer {
-                    currentChosenNumberComputer = 100
-                }
-                
-                triesComputer += 1
-                updateLabels()
-            } else {
-                showAlert()
-            }
-            
-        default:
-            break
-        }
-    }
-    
-    private func updateLabels() {
-        triesComputerLabel.text = "Try № \(triesComputer)"
-        currentChosenNumberComputerLabel.text = "Your number is - \(currentChosenNumberComputer)"
-    }
-    
-    
 }
 
 // MARK: - Alert Controller
 extension GamePartOneViewController {
-    private func showAlert() {
+    private func showAlert(title: String, message: String) {
         let alert = UIAlertController(
-            title: "😏",
-            message: "Don't lie",
+            title: title,
+            message: message,
             preferredStyle: .alert
         )
         
@@ -122,8 +78,18 @@ extension GamePartOneViewController {
     }
 }
 
-
 // MARK: - Realization GamePartOneViewProtocol Methods (Connection Presenter -> View)
 extension GamePartOneViewController: GamePartOneViewProtocol {
+    func updateLabels(triesComputer: String, currentChosenNumberComputer: String) {
+        triesComputerLabel.text = triesComputer
+        currentChosenNumberComputerLabel.text = currentChosenNumberComputer
+    }
     
+    func showError(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    
+    func performSegue(identifier: String) {
+        performSegue(withIdentifier: identifier, sender: nil)
+    }
 }

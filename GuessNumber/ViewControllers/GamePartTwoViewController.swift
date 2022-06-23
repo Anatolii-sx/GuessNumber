@@ -9,72 +9,51 @@ import UIKit
 
 // MARK: - GamePartTwoViewProtocol (Connection Presenter -> View)
 protocol GamePartTwoViewProtocol: AnyObject {
-    
+    func setComputerResponse(text: String)
+    func changeComputerResponseVisible(isHidden: Bool)
+    func updateTriesLabel(tries: Int)
+    func endEditing(status: Bool)
+    func showError(title: String, message: String)
+    func performSegue(identifier: String)
 }
 
 class GamePartTwoViewController: UIViewController, UITextFieldDelegate {
-
+    // MARK: - IBOutlets
+    @IBOutlet weak var triesPlayerLabel: UILabel!
+    @IBOutlet weak var computerResponseLabel: UILabel!
+    @IBOutlet weak var inputedNumberTF: UITextField!
+    @IBOutlet weak var guessButton: UIButton!
+    
+    // MARK: - Public Properties
     var triesComputer: Int!
-    let guessNumberComputer = Int.random(in: 1...100)
     
     // MARK: - Private Properties
     private var presenter: GamePartTwoPresenterProtocol!
     
-    private var triesPlayer = 1
-    
-    @IBOutlet weak var triesPlayerLabel: UILabel!
-    @IBOutlet weak var inputedNumberTF: UITextField!
-    @IBOutlet weak var computerResponseLabel: UILabel!
-    
-    @IBOutlet weak var guessButton: UIButton!
-    
-    @IBAction func guessButtonTapped() {
-        
-        guard let inputedNumberTF = Int(inputedNumberTF.text ?? ""), 1...100 ~= inputedNumberTF else {
-            showAlert()
-            return
-        }
-        
-        computerResponseLabel.isHidden = true
-        
-        if guessNumberComputer == inputedNumberTF {
-            performSegue(withIdentifier: "ToResultSegue", sender: nil)
-        } else if guessNumberComputer < inputedNumberTF {
-            triesPlayer += 1
-            computerResponseLabel.text = "No, my number is less than yours"
-            computerResponseLabel.isHidden = false
-            updateTriesLabel()
-        } else if guessNumberComputer > inputedNumberTF {
-            triesPlayer += 1
-            computerResponseLabel.text = "No, my number is greater than yours"
-            computerResponseLabel.isHidden = false
-            updateTriesLabel()
-        }
-    }
+    // MARK: - Methods Of ViewController's Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         inputedNumberTF.delegate = self
-        updateTriesLabel()
-        addDoneButtonForNumberKeyboard()
-        
         presenter = GamePartTwoPresenter(view: self)
-        print("Computer guessed: \(guessNumberComputer)")
+        addDoneButtonForNumberKeyboard()
     }
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let resultVC = segue.destination as? ResultViewController else { return }
         resultVC.triesComputer = triesComputer
-        resultVC.triesPlayer = triesPlayer
+        resultVC.triesPlayer = presenter.triesPlayer
+    }
+    
+    // MARK: - IBActions
+    @IBAction func guessButtonTapped() {
+        presenter.guessButtonTapped(inputedNumber: inputedNumberTF.text ?? "")
     }
     
     // MARK: - UITextFieldDelegate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        computerResponseLabel.isHidden = true
+        presenter.charactersInTextFieldAreChanging()
         return true
-    }
-    
-    private func updateTriesLabel() {
-        triesPlayerLabel.text = "Try № \(triesPlayer)"
     }
     
     // MARK: - Keyboard
@@ -100,22 +79,22 @@ class GamePartTwoViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func doneButtonTapped() {
-        view.endEditing(true)
+        presenter.keyboardDoneButtonTapped()
     }
     
     // Hide keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        view.endEditing(true)
+        presenter.touchesBegan()
     }
 }
 
 // MARK: - Alert Controller
 extension GamePartTwoViewController {
-    private func showAlert() {
+    private func showAlert(title: String, message: String) {
         let alert = UIAlertController(
-            title: "⛔️",
-            message: "Write number from 1 to 100",
+            title: title,
+            message: message,
             preferredStyle: .alert
         )
         
@@ -131,8 +110,30 @@ extension GamePartTwoViewController {
     }
 }
 
-
 // MARK: - Realization GamePartTwoViewProtocol Methods (Connection Presenter -> View)
 extension GamePartTwoViewController: GamePartTwoViewProtocol {
     
+    func setComputerResponse(text: String) {
+        computerResponseLabel.text = text
+    }
+    
+    func changeComputerResponseVisible(isHidden: Bool) {
+        computerResponseLabel.isHidden = isHidden
+    }
+    
+    func updateTriesLabel(tries: Int) {
+        triesPlayerLabel.text = "Try № \(tries)"
+    }
+    
+    func endEditing(status: Bool) {
+        view.endEditing(status)
+    }
+    
+    func showError(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    
+    func performSegue(identifier: String) {
+        performSegue(withIdentifier: identifier, sender: nil)
+    }
 }

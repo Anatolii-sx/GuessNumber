@@ -7,10 +7,18 @@
 
 import UIKit
 
+// MARK: - GamePartTwoViewProtocol (Connection Presenter -> View)
+protocol GamePartTwoViewProtocol: AnyObject {
+    
+}
+
 class GamePartTwoViewController: UIViewController, UITextFieldDelegate {
 
     var triesComputer: Int!
     let guessNumberComputer = Int.random(in: 1...100)
+    
+    // MARK: - Private Properties
+    private var presenter: GamePartTwoPresenterProtocol!
     
     private var triesPlayer = 1
     
@@ -49,6 +57,7 @@ class GamePartTwoViewController: UIViewController, UITextFieldDelegate {
         updateTriesLabel()
         addDoneButtonForNumberKeyboard()
         
+        presenter = GamePartTwoPresenter(view: self)
         print(guessNumberComputer)
     }
     
@@ -120,4 +129,10 @@ extension GamePartTwoViewController {
         
         present(alert, animated: true)
     }
+}
+
+
+// MARK: - Realization GamePartTwoViewProtocol Methods (Connection Presenter -> View)
+extension GamePartTwoViewController: GamePartTwoViewProtocol {
+    
 }

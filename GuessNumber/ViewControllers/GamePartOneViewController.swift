@@ -7,9 +7,18 @@
 
 import UIKit
 
+
+// MARK: - GamePartOneViewProtocol (Connection Presenter -> View)
+protocol GamePartOneViewProtocol: AnyObject {
+    
+}
+
 class GamePartOneViewController: UIViewController {
 
     var guessNumberPlayer: Int!
+    
+    // MARK: - Private Properties
+    private var presenter: GamePartOnePresenterProtocol!
     
     private let maxNumberGame = 100
     private let minNumberGame = 1
@@ -33,6 +42,8 @@ class GamePartOneViewController: UIViewController {
             button.backgroundColor = .clear
         }
         updateLabels()
+        
+        presenter = GamePartOnePresenter(view: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -109,4 +120,10 @@ extension GamePartOneViewController {
         
         present(alert, animated: true)
     }
+}
+
+
+// MARK: - Realization GamePartOneViewProtocol Methods (Connection Presenter -> View)
+extension GamePartOneViewController: GamePartOneViewProtocol {
+    
 }

@@ -7,10 +7,18 @@
 
 import UIKit
 
+// MARK: - GuessNumberViewProtocol (Connection Presenter -> View)
+protocol GuessNumberViewProtocol: AnyObject {
+    
+}
+
 class GuessNumberViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBOutlets
     @IBOutlet weak var guessNumberTF: UITextField!
     @IBOutlet weak var enterButton: UIButton!
+    
+    // MARK: - Private Properties
+    private var presenter: GuessNumberPresenterProtocol!
     
     // MARK: - Methods Of ViewController's Life Cycle
     override func viewDidLoad() {
@@ -19,6 +27,7 @@ class GuessNumberViewController: UIViewController, UITextFieldDelegate {
         enterButton.isEnabled = false
         enterButton.alpha = 0.5
         addDoneButtonForNumberKeyboard()
+        presenter = GuessNumberPresenter(view: self)
     }
     
     // MARK: - Navigation
@@ -103,4 +112,9 @@ extension GuessNumberViewController {
         
         present(alert, animated: true)
     }
+}
+
+// MARK: - Realization GuessNumberViewProtocol Methods (Connection Presenter -> View)
+extension GuessNumberViewController: GuessNumberViewProtocol {
+    
 }

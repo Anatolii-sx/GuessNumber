@@ -20,7 +20,9 @@ protocol GamePartTwoPresenterProtocol {
 class GamePartTwoPresenter: GamePartTwoPresenterProtocol {
     // MARK: - Public Properties
     var triesPlayer = 1
-    let guessNumberComputer = Int.random(in: 1...100)
+    let guessNumberComputer = Int.random(
+        in: ConditionsOfGame.minNumber.rawValue...ConditionsOfGame.maxNumber.rawValue
+    )
     
     // MARK: - Private Properties
     private unowned let view: GamePartTwoViewProtocol
@@ -49,8 +51,10 @@ class GamePartTwoPresenter: GamePartTwoPresenterProtocol {
     
     // MARK: - Private Methods
     private func checkAnswer(inputedNumber: String) {
-        guard let inputedNumber = Int(inputedNumber), 1...100 ~= inputedNumber else {
-            view.showError(title: "⛔️", message: "Write number from 1 to 100")
+        guard let inputedNumber = Int(inputedNumber), ConditionsOfGame.minNumber.rawValue...ConditionsOfGame.maxNumber.rawValue ~= inputedNumber else {
+            view.showError(
+                title: "⛔️",
+                message: "Write number from \(ConditionsOfGame.minNumber.rawValue) to \(ConditionsOfGame.maxNumber.rawValue)")
             return
         }
         

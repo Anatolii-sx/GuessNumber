@@ -20,12 +20,12 @@ class GamePartOnePresenter: GamePartOnePresenterProtocol {
     var triesComputer = 1
     
     // MARK: - Private Properties
-    private var maxChosenNumberComputer = 100
-    private var minChosenNumberComputer = 1
-    private var currentChosenNumberComputer = Int.random(in: 1...100)
+    private var maxChosenNumberComputer = ConditionsOfGame.maxNumber.rawValue
+    private var minChosenNumberComputer = ConditionsOfGame.minNumber.rawValue
+    private var currentChosenNumberComputer = Int.random(
+        in: ConditionsOfGame.minNumber.rawValue...ConditionsOfGame.maxNumber.rawValue
+    )
     
-    private let maxNumberGame = 100
-    private let minNumberGame = 1
     private let guessNumberPlayer: Int
     
     private unowned let view: GamePartOneViewProtocol
@@ -83,7 +83,7 @@ class GamePartOnePresenter: GamePartOnePresenterProtocol {
             currentChosenNumberComputer = (maxChosenNumberComputer - minChosenNumberComputer) / 2 + minChosenNumberComputer
             
             if currentChosenNumberComputer == minChosenNumberComputer {
-                currentChosenNumberComputer = 100
+                currentChosenNumberComputer = ConditionsOfGame.maxNumber.rawValue
             }
             
             triesComputer += 1

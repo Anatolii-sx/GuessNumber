@@ -46,8 +46,10 @@ class GuessNumberPresenter: GuessNumberPresenterProtocol {
     }
     
     func enterNumberButtonTapped(guessNumber: String) {
-        guard let guessNumber = Int(guessNumber), 1...100 ~= guessNumber else {
-            view.showError(title: "⛔️", message: "Write number from 1 to 100")
+        guard let guessNumber = Int(guessNumber), ConditionsOfGame.minNumber.rawValue...ConditionsOfGame.maxNumber.rawValue ~= guessNumber else {
+            view.showError(
+                title: "⛔️",
+                message: "Write number from \(ConditionsOfGame.minNumber.rawValue) to \(ConditionsOfGame.maxNumber.rawValue)")
             return
         }
         view.performSegue(identifier: "ToGamePartOneSegue")

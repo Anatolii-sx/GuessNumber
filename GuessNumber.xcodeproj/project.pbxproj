@@ -21,6 +21,7 @@
 		9C735BC22864D6CA00A15DE0 /* GamePartOnePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C735BC12864D6CA00A15DE0 /* GamePartOnePresenter.swift */; };
 		9C735BC42864D6DD00A15DE0 /* GamePartTwoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C735BC32864D6DD00A15DE0 /* GamePartTwoPresenter.swift */; };
 		9C735BC62864D6EA00A15DE0 /* ResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C735BC52864D6EA00A15DE0 /* ResultPresenter.swift */; };
+		9C735BCB286523A700A15DE0 /* ConditionsOfGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C735BCA286523A700A15DE0 /* ConditionsOfGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		9C735BC12864D6CA00A15DE0 /* GamePartOnePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePartOnePresenter.swift; sourceTree = "<group>"; };
 		9C735BC32864D6DD00A15DE0 /* GamePartTwoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePartTwoPresenter.swift; sourceTree = "<group>"; };
 		9C735BC52864D6EA00A15DE0 /* ResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPresenter.swift; sourceTree = "<group>"; };
+		9C735BCA286523A700A15DE0 /* ConditionsOfGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsOfGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				9C735BB928635EF100A15DE0 /* ViewControllers */,
 				9C735BBC2864D65600A15DE0 /* Presenters */,
 				9C735BB828635EE000A15DE0 /* Storyboards */,
+				9C735BCC286526AA00A15DE0 /* Services */,
 				9C735BBB28635F1E00A15DE0 /* Resources */,
 				9C735BBA28635F1500A15DE0 /* App */,
 			);
@@ -129,6 +132,14 @@
 				9C735BC52864D6EA00A15DE0 /* ResultPresenter.swift */,
 			);
 			path = Presenters;
+			sourceTree = "<group>";
+		};
+		9C735BCC286526AA00A15DE0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9C735BCA286523A700A15DE0 /* ConditionsOfGame.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +219,7 @@
 				9C735B9D28623C5B00A15DE0 /* AppDelegate.swift in Sources */,
 				9C735BB328635E2400A15DE0 /* GuessNumberViewController.swift in Sources */,
 				9C735BB728635E7F00A15DE0 /* GamePartTwoViewController.swift in Sources */,
+				9C735BCB286523A700A15DE0 /* ConditionsOfGame.swift in Sources */,
 				9C735B9F28623C5B00A15DE0 /* SceneDelegate.swift in Sources */,
 				9C735BB128635D1E00A15DE0 /* ResultViewController.swift in Sources */,
 				9C735BC02864D6AB00A15DE0 /* GuessNumberPresenter.swift in Sources */,
